@@ -1,4 +1,4 @@
-defmodule RabbitmqMetronomeElixir.Mixfile do
+defmodule RabbitMQ.Plugin.Prometheus.Mixfile do
   use Mix.Project
 
   def project do
@@ -6,7 +6,7 @@ defmodule RabbitmqMetronomeElixir.Mixfile do
       nil -> "deps"
       dir -> dir
     end
-    [app: :rabbitmq_metronome_elixir,
+    [app: :rabbitmq_management_hello_world,
      version: "0.1.0",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
@@ -22,9 +22,7 @@ defmodule RabbitmqMetronomeElixir.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [applications: [:logger, :rabbit, :amqp],
-     mod: {RabbitMQ.Plugin.Metronome, []},
-     env: [exchange: "metronome"],
+    [applications: [:logger, :rabbit, :rabbitmq_management],
     ]
   end
 
@@ -39,9 +37,6 @@ defmodule RabbitmqMetronomeElixir.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps(deps_dir) do
     [
-      {:amqp, git: "https://github.com/binarin/amqp"},
-      # We use `true` as the command to "build" rabbit_common and
-      # amqp_client because Erlang.mk already built them.
       {
         :rabbit_common,
         path: Path.join(deps_dir, "rabbit_common"),
@@ -49,8 +44,14 @@ defmodule RabbitmqMetronomeElixir.Mixfile do
         override: true
       },
       {
-        :amqp_client,
-        path: Path.join(deps_dir, "amqp_client"),
+        :rabbitmq_management,
+        path: Path.join(deps_dir, "rabbitmq_management"),
+        compile: "true",
+        override: true
+      },
+      {
+        :rabbitmq_management_agent,
+        path: Path.join(deps_dir, "rabbitmq_management_agent"),
         compile: "true",
         override: true
       },

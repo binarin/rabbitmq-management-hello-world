@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :rabbitmq_metronome_elixir, key: :value
+#     config :rabbitmq_management_hello_world, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:rabbitmq_metronome_elixir, :key)
+#     Application.get_env(:rabbitmq_management_hello_world, :key)
 #
 # Or configure a 3rd-party app:
 #

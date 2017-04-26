@@ -1,6 +1,6 @@
-PROJECT = rabbitmq_metronome_elixir # XXX not sure if needed
+PROJECT = rabbitmq_management_hello_world
 
-DEPS = rabbit_common rabbit amqp_client
+DEPS = rabbit_common rabbit rabbitmq_management rabbitmq_management rabbitmq_management_agent
 TEST_DEPS = rabbitmq_ct_helpers rabbitmq_ct_client_helpers
 
 DEP_PLUGINS = rabbit_common/mk/rabbitmq-plugin.mk
