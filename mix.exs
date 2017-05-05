@@ -12,7 +12,7 @@ defmodule RabbitMQ.Plugin.Prometheus.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps_path: deps_dir,
-     deps: deps(deps_dir),
+     deps: deps(deps_dir, Mix.env),
      aliases: aliases()
     ]
   end
@@ -35,7 +35,10 @@ defmodule RabbitMQ.Plugin.Prometheus.Mixfile do
   #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
   #
   # Type "mix help deps" for more examples and options
-  defp deps(deps_dir) do
+  defp deps(deps_dir, :dev) do
+    [{:remix, git: "https://github.com/AgilionApps/remix", branch: "master"}] ++ deps(deps_dir, :all)
+  end
+  defp deps(deps_dir, _all) do
     [
       {
         :rabbit_common,
